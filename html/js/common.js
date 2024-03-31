@@ -195,6 +195,15 @@ jQuery(document).ready(function($){
         by: "chars",
         scrub: 2
     });
+
+
+
+    $(".navbar-nav li").click(function() {
+        // Remove class from the element
+        $(".navbar-collapse").removeClass("show");
+        $("body,html").removeClass("open-nav");
+        $(".stick").removeClass("open");
+    });
     
     // document end
     
