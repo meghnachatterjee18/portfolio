@@ -82,20 +82,15 @@ jQuery(document).ready(function($){
         swipe: false,
         draggable: false,
         responsive: [
+            
             {
-                breakpoint: 1500,
-                settings: {
-                    slidesToShow: 6
-                }
-            },
-            {
-                breakpoint: 1024,
+                breakpoint: 992,
                 settings: {
                     slidesToShow: 4
                 }
             },
             {
-                breakpoint: 600,
+                breakpoint: 768,
                 settings: {
                     slidesToShow: 3
                 }
@@ -109,34 +104,37 @@ jQuery(document).ready(function($){
         ]
     });
 
-    // slick slider end
 
 
-    // type effect start
-        var typedText = "I am passionate about my work Web Designing";
-        var typingSpeed = 100; // Milliseconds
-        var i = 0;
-        
-        function typeWriter() {
-            if (i < typedText.length) {
-                $('.typed-text').append(typedText.charAt(i));
-                i++;
-                setTimeout(typeWriter, typingSpeed);
-            } else {
-                // Once the text has been fully displayed,
-                // wait a bit and then start over.
-                setTimeout(function() {
-                    $('.typed-text').text('');
-                    i = 0;
-                    typeWriter();
-                }, 1500); // Adjust this pause time as needed.
+    $('.projects-slider').slick({
+        dots: false,
+        arrows: true,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        autoplay: false,
+        autoplaySpeed: 0,
+        prevArrow: '.prev-arrows',
+        nextArrow: '.next-arrows',
+        centerMode: false,
+        responsive: [
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            
+            {
+                breakpoint: 576,
+                settings: {
+                    slidesToShow: 1
+                }
             }
-        }
-        
-        typeWriter(); // Initiate typing effect
-    
-    // type effect end
+        ]
+    });
 
+    // slick slider end
 
     // to make sticky nav bar start
         $(window).scroll(function () {
@@ -168,6 +166,36 @@ jQuery(document).ready(function($){
         });
 
     //Horizontal Tab end
+
+    // fancybox start
+    $(".fancybox").fancybox({
+    });
+    //  fancybox end
+
+
+    // reveal animation
+    if ($(".reveal").length) {
+        var reveal = gsap.utils.toArray(".reveal > *");
+
+        reveal.forEach((elem, i) => {
+            ScrollTrigger.create({
+                trigger: elem,
+                start: "top 90%",
+                end: "top 20%",
+                scrub: 2,
+                onEnter() {
+                    elem.classList.add("play-reveal");
+                },
+            });
+        });
+    }
+
+    Splitting({
+        target: "[data-splitting]",
+        by: "chars",
+        scrub: 2
+    });
+    
     // document end
     
     })
